@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <div class="clock">
+    <div class="clock-face">
+      <div class="handle hour-handle"></div>
+      <div class="handle minute-handle"></div>
+      <div class="handle second-handle"></div>
+    </div>
+  </div>
+
+  <style>
+    .clock {
+      height: 200px;
+      width: 200px;
+      background-color: #2196f3;
+      border: 10px solid #ffffff5e;
+      border-radius: 50%;
+    }
+
+    .clock-face {
+      height: 100%;
+      width: 100%;
+    }
+
+    .handle {
+      height: 3px;
+      width: 100px;
+      top: 50%;
+      position: relative;
+      transform: rotate(90deg);
+      transform-origin: 100%;
+      transition: all 0.05s;
+    }
+
+    .hour-handle {
+      background-color: red;
+    }
+
+    .minute-handle {
+      background-color: green;
+    }
+
+    .second-handle {
+      background-color: blue;
+    }
+
+    .hour-handle,
+    .minute-handle,
+    .second-handle {
+      transition-timing-function: cubic-bezier(0.07, 0.98, 0.2, 1.1);
+    }
+  </style>
+  <script>
+    const hoursHand = document.querySelector('.hour-handle')
+    const minutesHand = document.querySelector('.minute-handle')
+    const secondHand = document.querySelector('.second-handle')
+
+    function setDate() {
+      const now = new Date();
+      const seconds = now.getSeconds();
+      const secondsDegree = ((seconds / 60) * 360) + 90;
+      secondHand.style.transform = `rotate(${secondsDegree}deg)`
+
+      const minutes = now.getMinutes();
+      const minutesDegree = ((minutes / 60) * 360) + 90;
+      minutesHand.style.transform = `rotate(${minutesDegree}deg)`
+
+      const hours = now.getHours();
+      const hoursDegree = ((hours / 24) * 360) + 90;
+      hoursHand.style.transform = `rotate(${hoursDegree}deg)`
+    }
+
+    setInterval(setDate, 1000);
+  </script>
+</body>
+
+</html>
