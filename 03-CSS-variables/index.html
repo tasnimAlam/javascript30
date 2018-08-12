@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <style>
+    :root {
+      --base: #4466ff;
+      --spacing: 10px;
+      --blue: 10px;
+    }
+
+    .h1 {
+      color: var(--base);
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+  </style>
+
+  <div>
+    <h1>CSS variables with JS</h1>
+    <div class="controllers">
+      <label>Spacing</label>
+      <input type="range" value="10" name="spacing" min="0" max="100" data-size="px">
+
+      <label>Color</label>
+      <input type="color" value="#4477ff" name="base">
+
+      <label>Blur</label>
+      <input type="range" value="10" min="0" max="100" name="blur" data-size="px">
+
+    </div>
+    <img src="image.jpeg" height="400" width="400">
+
+  </div>
+
+  <script>
+    function handleChange() {
+      const suffix = this.dataset.size || "";
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+    const inputs = document.querySelectorAll('.controllers input');
+
+    inputs.forEach(input => input.addEventListener("change", handleChange))
+    inputs.forEach(input => input.addEventListener("mousemove", handleChange))
+
+  </script>
+
+</body>
+
+</html>
