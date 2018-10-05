@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Checkbox Test</title>
+</head>
+
+<body>
+  <style>
+    .wrapper{
+      background:rgb(254, 234, 59);
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+
+    .header{
+      text-align: center;
+      color: #ff0266;
+    }
+
+    .checkbox-container{
+      background: #ffffff;
+      width: 50%;
+      margin: 0 auto;
+      padding: 10px;
+      border: 1px solid #eeeeee;
+    }
+
+  </style>
+
+  <div class="wrapper">
+    <h1 class="header">Checkbox Test</h1>
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox">
+        Junk Text
+      </label>
+    </div>
+
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox">
+        Junk Text Two
+      </label>
+    </div>
+
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox">
+        Junk Text Three
+      </label>
+    </div>
+
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox">
+        Junk Text Four
+      </label>
+    </div>
+
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox">
+        Junk Text Five
+      </label>
+    </div>
+
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox">
+        Junk Text Six
+      </label>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  let checkboxes = document.querySelectorAll('.checkbox-container input[type="checkbox"]');
+  let lastChecked;
+
+  function handleCheck(e) {
+    let inBetween = false;
+
+    if (e.shiftKey && this.checked) {
+      checkboxes.forEach(checkbox => {
+        if (checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween;
+        }
+
+        // Make all checkboxes checked which are in between
+        if (inBetween) {
+          checkbox.checked = true
+        }
+      })
+    }
+
+    // Mark last checkebox 
+    lastChecked = this;
+  }
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck))
+</script>
+
+</html>
